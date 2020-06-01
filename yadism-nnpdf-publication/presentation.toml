@@ -1,0 +1,9 @@
+# use this file to choose structure, theme, and some other common configs
+
+title = "yadism-nnpdf-publication"
+
+[structure]
+name = "split-html-only"
+
+[theme]
+name = "serif.css"

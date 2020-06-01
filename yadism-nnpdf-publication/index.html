@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme.css" id="theme">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        
+        <section>
+          <!--<h1>-->
+            <!--Yadism-->
+          <!--</h1>-->
+          <!--<p>-->
+            <!--Yet another DIS module-->
+          <!--</p>-->
+          <img src="assets/logo.svg" alt="Yet Another DIS Module" width="80%" height="auto">
+        </section>
+        
+        <section>
+          <h2>
+            Implemented features
+          </h2>
+          <p>
+            <ul>
+              <li>LO plain coefficient functions</li>
+              <li>NLO plain light & heavy coefficient functions</li>
+              <li>scale variations</li>
+              <li>target mass corrections</li>
+              <li>flavor number schemes</li>
+            </ul>
+          </p>
+        </section>
+        
+        <section>
+          <h2>
+            Currently working on: FNS
+          </h2>
+
+          <ul>
+            <li>FFNS implemented and benchmarked against APFEL</li>
+            <li>ZM-VFNS <em style="color: #4a4035">in debugging</em></li>
+            <li>FONLL <em style="color: #4a4035">coming soon</em></li>
+            <li><strong style="color: #4a4035"><em>Related issue:</em></strong> $\alpha_s$ branching evolution in APFEL (depends on FNS)</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>
+            Still working on: TMC
+          </h2>
+          <ul>
+            <li>Implementation complete (including all formulas alternatives)</li>
+            <li>Succesful APFEL benchmark <em>(choosing to compare with the very same expressions and interpolation strategy)</em></li>
+            <li>Still <strong style="color: #4a4035">comparing literature</strong></li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>
+            Testing and automation setup
+          </h2>
+          <ul>
+            <li>CI implemented through Github workflows <em>(since the very beginning of the development in January)</em></li>
+            <li>Multiple tests present: unit, regression tests, and APFEL benchmarks</li>
+            <li>Benchmarks managed through DB based framework (using <code>tinydb</code>)</li>
+            <li>Benchmarks against further codes <em style="color: #4a4035">coming soon</em></li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>
+            Roadmap
+          </h2>
+          <ol>
+            <li>Going on with FNS</li>
+            <li>Implement new features listed on the <a href="https://github.com/N3PDF/yadism/wiki/List-of-features-to-be-implemented">repo wiki</a></li>
+            <li>Move to NNLO</li>
+          </ol>
+
+          <p align="left">
+            In the meanwhile project will grow, and more tools, benchmarks/testing and automation are added and live updated.
+          </p>
+        </section>
+        
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/math/math.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMath, RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+    </script>
+  </body>
+</html>
