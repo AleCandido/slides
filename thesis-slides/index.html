@@ -1,0 +1,1149 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Simplicial Quantum Gravity with Dynamical Gauge Fields</title>
+
+		<meta name="description" content="A CDT extension to gauge content.">
+		<meta name="author" content="Alessandro Candido">
+		<meta name="" content="">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/mytheme.css" id="theme">
+		<link rel="stylesheet" href="css/custom.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-background="assets/triangles.svg">
+					<h1>Simplicial Quantum Gravity </h1>
+					<h4>with</h4>
+					<h1> Dynamical Gauge Fields </h1>
+					<p>
+						Alessandro Candido<br>
+						<em>Supervisor:</em> Massimo D'Elia
+					</p>
+					<aside class="notes">
+						Buongiorno a tutti. <br> <br>
+						Il titolo della tesi che presento... <br> <br>
+						Lo scopo di questo lavoro è stato studiare l'introduzione...
+					</aside>
+				</section>
+
+				<section data-state="overview">
+					<h2 style="margin-bottom:7%">Overview</h2>
+
+					<table class="overview" width=100% style="margin-bottom:10%">
+						<tr>
+							<td style="position: relative; left: -30px">
+								<img width="100" height="100" style="border: 3px solid #f81d1dff; display: block" data-src="assets/b1.svg" align='left'>
+								<img class="fragment fade-in-then-out" data-fragment-index="0" width="100" height="100" style="border: 3px solid #f81d1dff; position: relative; left: -100px;" data-src="assets/bf1.svg" align='left'>
+								<p style="width: 400px; position: relative; left: -75px">Asymptotic<br>Safety</p>
+							</td>
+							<td style="position: relative; left: -15px">
+								<img width="100" height="100" style="border: 3px solid #ffaa0fff" data-src="assets/b2.svg" align='left'>
+								<img class="fragment fade-in-then-out" data-fragment-index="1" width="100" height="100" style="border: 3px solid #ffaa0fff; position: relative; left: -100px;" data-src="assets/bf2.svg" align='left'>
+								<p style="width: 700px; position: relative; left: -75px">Causal Dynamical<br>Triangulations</p>
+							</td>
+							<td style="position: relative; left: 30px">
+								<img width="100" height="100" style="border: 3px solid #ffff0fff" data-src="assets/b3.svg" align='left'>
+								<img class="fragment fade-in-then-out" data-fragment-index="2" width="100" height="100" style="border: 3px solid #ffff0fff; position: relative; left: -100px;" data-src="assets/bf3.svg" align='left'>
+								<p style="width: 400px; position: relative; left: -75px">Gauge Fields<br>on CDT</p>
+							</td>
+						</tr>
+					</table>
+					<table class="overview" width=70%>
+						<tr>
+							<td>
+								<img width="100" height="100" style="border: 3px solid #64ff0fff" data-src="assets/b4.svg" align='left'>
+								<img class="fragment fade-in-then-out" data-fragment-index="3" width="100" height="100" style="border: 3px solid #64ff0fff; position: relative; left: -100px;" data-src="assets/bf4.svg" align='left'>
+								<p style="width: 400px; position: relative; left: -75px">Simulations'<br>Results</p>
+							</td>
+							<td>
+								<img width="100" height="100" style="border: 3px solid #0fd5ffff" data-src="assets/b5.svg" align='left'>
+								<img class="fragment fade-in-then-out" data-fragment-index="4" width="100" height="100" style="border: 3px solid #0fd5ffff; position: relative; left: -100px;" data-src="assets/bf5.svg" align='left'>
+								<p style="width: 400px; position: relative; left: -75px">Conclusion<br>and Perspectives</p>
+							</td>
+						</tr>
+					</table>
+					<aside class="notes">
+						Comincio esponendo brevemente il contenuto di questa presentazione. <br> <br>
+						Innanzitutto introdurrò il concetto di AS, l'approccio più generale,
+						che adottiamo nel nostro lavoro. <br> <br>
+						Quindi parlerò delle Triangolazioni Dinamiche Causali, le CDT, che
+						sono lo strumento concreto che usiamo per definire un teoria della gravità quantistica. <br> <br>
+						In seguito introdurrò i campi di gauge su reticolo, passando brevemente
+						dal reticolo ipercubico per arrivare alla definizione su triangolazioni
+						e all'algoritmo da noi sviluppato. <br> <br>
+						Passerò poi a discutere i risultati delle nostre simulazioni numeriche. <br> <br>
+						Infine farò un breve riepilogo dei risultati ottenuti e presenterò alcune
+						prospettive di questa ricerca.
+					</aside>
+				</section>
+
+				<!-- SECTION 1 -->
+
+				<section data-state="transition" data-transition="slide" data-background="#181818" data-background-transition="zoom">
+					<h2>Asymptotic Safety</h2>
+					<img class="fragment fade-in" data-fragment-index="0" data-src="assets/progress1v2.svg" data-transition="zoom" style="width: 500px; border:0; box-shadow:none; background: rgba(0, 0, 0, 0);" align='middle'>
+					<aside class="notes">
+						<h2>Concetto AS</h2>
+						Cominciamo introducendo il concetto di AS. <br> <br>
+
+						<h2>Nozioni preliminari</h2>
+						Per farlo discuterò prima alcune nozioni preliminari.
+					</aside>
+				</section>
+
+				<section data-state="section1">
+					<h2>QFT failure for Quantum <br>Gravity</h2>
+					<p>The classical theory of gravity is known:</p>
+					<div class="mymath">
+						$$ S_{EH} = \frac{1}{16\pi G_N} \int d^4 x \sqrt{-g}~ (R - 2\Lambda) $$
+					</div>
+					<p>But trying to quantize it as a QFT leads to unabsorbable divergences,
+						because the theory is <em>non-renormalizable</em>
+						<i  class="citation">Goroff and Sagnotti, ’t Hooft and Veltman</i>. </p>
+					<aside class="notes">
+						<h2>Punto di partenza</h2>
+
+						<h2>Il problema nasce</h2>
+
+						<h2>Cambiare e rinormalizzabilità</h2>
+						Il punto di partenza è la teoria classica della gravità, cioè la Relatività
+						Generale di Einstein, la cui azione... <br> <br>
+
+						Il problema nasce nella quantizzazione di questa teoria, poiché l'azione
+						è non rinormalizzabile, e quindi non è applicabile lo stesso procedimento
+						usato per le altre interazioni.
+
+						C'è bisogno quindi di cambiare qualcosa. Nel caso di AS l'idea è quella
+						di limitarsi a considerare una nozione più generale di rinormalizzabilità.
+					</aside>
+					<p style="text-align: right"> Something more is needed &xrarr;</p>
+				</section>
+
+				<section data-state="section1">
+					<h2>Effective Theories <p>and Renormalization Group</p></h2>
+					<p>A useful point of view on QFT is that of Effective Theories.</p>
+					<img width="600" style="border: 0.04em solid #000000ff" alt="" align="middle"
+					 data-src="assets/section1/coarsegrain_b.svg" >
+					<p> Reducing the number of the degrees of freedom (<i>RG transformation</i>) a new theory is obtained,
+						with the <em>same dynamics</em> for the shared ones.</p>
+					<aside class="notes">
+						<h2>Trasformazioni di scala</h2>
+						<h2>Micro &xrarr; Macro</h2>
+						<h2>Figura</h2>
+						Il gruppo RG è un insieme di trasformazioni sulle teorie legato alle
+						trasformazioni di scala. <br> <br>
+
+						L'idea è quella di ottenero una dinamica macroscopica partendo da quella
+						microscopica nota. <br> <br>
+
+						In figura è riportato un reticolo 'microscopico' a sinistra, e il corrispondente
+						reticolo macroscopico associato, le cui variabili di sito corrispondono
+						a quelle del primo aggregate in blocchi.
+					</aside>
+				</section>
+
+				<section data-state="section1">
+					<h2>Fixed Points <p>of RG flow</p> </h2>
+					<p>In QFT the RG transformations have an exact definition in the language of the <i>path integral</i>:</p>
+					<div class="mymath">
+						$$e^{iS(\{\varphi\}; ~\Lambda)} = \int^{\Lambda_0}_{\Lambda} \mathcal{D} \varphi ~e^{iS(\{\varphi\}; ~\Lambda_0)}$$
+					</div>
+					<p>If a sufficient number of terms are taking into account, the action of the
+						RG can be interpreted as a <i>flow in the space of couplings</i>.</p>
+					<p>A theory invariant under RG transformations is a <em>fixed point</em>.</p>
+					<aside class="notes">
+						<h2>Formulazione matematica.</h2>
+						<h2>Path Integral</h2>
+						<h2>RG</h2>
+						Il RG può essere formalizzato matematicamente nell'ambito del Path Integral. <br> <br>
+
+						Nel Path Integral la misura di osservabili corrisponde a sommare i valori
+						che assume su tutte le possibili configurazioni, pesate in modo proporzionale
+						all'azione. <br> <br>
+
+						L'azione del gruppo di rinormalizzazione corrisponde a una somma parziale
+						che viene fatta sulle variabili microscopiche, in questo modo si ottiene
+						un nuovo peso da cui estrarre la nuova azione. <br> <br>
+
+						<hr>
+
+						P.S.: per le osservabili: non ha senso misurare in teorie efficaci osservabili
+						che dipendono dai dof microscopici che abbiamo dimenticato, per cui sono
+						piatte al di sotto di quella scala e i due path integral si corrispondono.
+					</aside>
+				</section>
+
+				<section data-state="section1">
+					<h2>Fixed Points <p>of RG flow</p> </h2>
+					<div class="box">
+					<img width="500" style="border: 0.04em solid #000000ff; margin-right: 1em; margin-left: -0.5em;"
+					 alt="" align="left" data-src="assets/section1/RGFlow_b.svg" >
+				 	<div style="line-height:0%;"><br></div>
+					<div>
+						<p>There are two kinds of RG fixed points:</p>
+						<ul>
+							<li><i style="color: red">IR</i> fixed points;</li>
+							<li><i style="color: purple">UV</i> fixed points.</li>
+						</ul>
+						<p>Both kinds are scale invariant, but <i style="color: purple">UV</i> ones correspond
+							to <em>fundamental</em> theories, that hold to any scale.</p>
+					</div>
+					</div>
+					<aside class="notes">
+						<h2>Seguendo linea flusso</h2>
+						<h2>Infrarosso a grandi distanza</h2>
+						<h2>Ultravioletto Fondamentale</h2>
+					</aside>
+				</section>
+
+				<section data-state="section1">
+					<h2>Asymptotic Safety <p>UV fixed points</p> </h2>
+				 	<!-- <div style="line-height:80%;"><br></div> -->
+					<div class="box">
+					<img width="400" style="border: 0.05em solid #000000ff; margin-right: 1em;"
+					 alt="" align="left" data-src="assets/section1/rgflow.png" >
+						<p style="margin-bottom: 1em"> The AS hypothesis is that the fundamental
+							theory of gravity is a QFT, but corresponds to a different
+							<i style="color: purple">UV</i> fixed point.<br> <br>
+							So, differently from other theories, the known Gaussian point
+						<i style="font-size: 0.7em">(null couplings)</i> is repulsive for gravity, so non-renormalizable.</p>
+					</div>
+					<aside class="notes">
+						<h2>Rinormalizzazione generalizzata</h2>
+						<h2>Punto fisso gaussiano</h2>
+						<h2>Asymptotic Safety</h2>
+					</aside>
+				</section>
+
+				<!-- SECTION 2 -->
+
+				<section data-state="transition" data-transition="slide" data-background="#181818" data-background-transition="zoom">
+					<h2>Causal &nbsp; Dynamical<br>Triangulations</h2>
+					<img class="fragment fade-in" data-fragment-index="0" data-src="assets/progress2v2.svg"
+					style="width: 500px; border:0; box-shadow:none; background: rgba(0, 0, 0, 0);" align='middle'>
+					<aside class="notes">
+						Passiamo ora a discutere le Triangolazioni Dinamiche.
+					</aside>
+				</section>
+
+				<section data-state="section2">
+					<h2>Dynamical Triangulations <p>as <i style="color: purple; font-style: normal">UV</i> regulator</p></h2>
+					<p>In order to apply the RG description some kind of regulator is needed,
+						if possible preserving <i>diffeomorphisms invariance</i>.</p>
+					<img width="700" style="margin: 0 0 0 0;border: 0; box-shadow:none; background: rgba(0, 0, 0, 0);"
+						alt="" align="middle" data-src="assets/section2/dt.svg" >
+					<p>A <em>piece-wise linear manifold</em> has no gravitational degrees of
+						freedom under the scale of its pieces.</p>
+					<aside class="notes">
+						<h2>Fluttuazioni in GR</h2>
+						<h2>Lattice spacing</h2>
+						<h2>Regolatore UV</h2>
+
+						<hr>
+
+						E' sempre utile che il regolatore non rompa le simmetrie del sistema.<br> <br>
+
+						Scegliamo lo spazio delle triangolazioni perché due triangolazioni possono
+						<em>differire anche solo localmente</em>, mentre per un reticolo ipercubico non
+						sarebbe possibile (in un certo senso lo spazio delle triang. è più fitto,
+						cioè le triang. possono essere più vicine).
+					</aside>
+				</section>
+
+				<section data-state="section2">
+					<h2>Causal Structure</h2>
+					<p>In CDT a further <i>causal structure</i> is added to the DT:</p>
+					<img width="700" style="border: 0; box-shadow:none; background: rgba(0, 0, 0, 0);
+						margin: 5px 0 0 0" alt="" align="middle" data-src="assets/section2/cdt.svg" >
+					<p style="margin-top: 0">
+						in this way there are:
+					</p>
+					<ul>
+						<li>an explicit <em>foliation</em>;</li>
+						<li>two kinds of links: <em>time-like</em> and <em>space-like</em>.</li>
+					</ul>
+				<aside class="notes">
+					<h2>Motivazioni:</h2>
+					<h3>Disponibilità osservabili</h3>
+					<h3>Fase fisica promettente</h3>
+					vedi avanti...
+				</aside>
+				</section>
+
+				<section data-state="section2">
+					<h2 style="margin: 0.13em 0 0.6em 0">Regge Action</h2>
+					<div class="box">
+						<p>
+							It is made by a <em>curvature</em> term and <em>volume</em> (cosmological) one.
+							<br><br>
+							The curvature is localized on $d-2$ simplices, encoded as a <em>missing angle</em>.
+						</p>
+						<img width="500" style="border: 0; box-shadow:none; background: rgba(0, 0, 0, 0);
+						 margin: 0 0 0 0 !important" alt="" data-src="assets/section2/regge.png">
+					</div>
+					<div class="mymath" style="margin-top: 0.3em">
+						$$S_{Regge} = \frac{1}{16\pi G_N}  \underbrace{\sum_{\sigma^{d-2} {\scriptscriptstyle\,\in\,} \mathcal{T}} 2\epsilon_{\sigma^{d-2}} V_{\sigma^{d-2}}}_{\text{total curvature}}
+						- \frac{\Lambda}{8\pi G_N} \underbrace{\sum_{\sigma^d {\scriptscriptstyle\,\in\,} \mathcal{T}} V_{\sigma^d}}_{\text{total volume}}$$
+					</div>
+				<aside class="notes">
+					<h2>Azione per configurazione</h2>
+					<h2>Versione discreta EH</h2>
+					<h3>Volume</h3>
+					<h3>Curvatura (Figura)</h3>
+
+					<hr>
+					Termine di curvatura (figura) + termine di volume
+
+					In 2D Gauss-Bonnet blocca la curvatura totale
+				</aside>
+				</section>
+
+				<section data-state="section2">
+					<h2 style="margin: 0.5em 0">Phase Diagram</h2>
+					<div class="box">
+						<div style="flex-basis: 50%">
+							<p><i>Four phases</i> have been found in <em>4D CDT</em> space of couplings.
+								<br><br>
+								The value of some observables for one of these, <em>$C_{dS}$</em>,
+								are consistent with those of the observed universe (for example
+								the space profile).</p>
+						</div>
+						<img width="400" style="margin-left: 20px; border: 0; box-shadow:none;
+						  background: rgba(0, 0, 0, 0); flex-basis: 50%" alt="" align="right"
+							data-src="assets/section2/phase_diagram.svg" >
+					</div>
+					<p style="margin: 0.3em 0 0 0">
+						For <em>2D CDT</em> the structure of the phase space is analytically known,
+						with a fixed point for $\lambda = \log 2$.
+					</p>
+					<img data-src="assets/section2/cdt2d.svg" style="width: 700px; border:0;
+					box-shadow:none; background: rgba(0, 0, 0, 0);" align='middle'>
+				<aside class="notes">
+					<h2>Fase C_dS</h2>
+				</aside>
+				</section>
+
+				<!-- SECTION 3 -->
+
+				<section data-state="transition" data-transition="slide" data-background="#181818" data-background-transition="zoom">
+					<h2>Gauge Fields on CDT</h2>
+					<img class="fragment fade-in" data-fragment-index="0" data-src="assets/progress3v2.svg"
+					style="width: 500px; border:0; box-shadow:none; background: rgba(0, 0, 0, 0);" align='middle'>
+				</section>
+
+				<section data-state="section3">
+					<h2>Gauge Fields <p>on flat static Lattice</p></h2>
+					<div class="box">
+						<p style="flex-basis: 55%">On a regular static lattice each <b>site</b>
+							represents an <em>element of space-time</em>, <br> <br>
+							and the <b>gauge content</b> is encoded in the <em>parallel transports</em>
+							between adjacent sites <br>
+							<i style="font-size: 0.7em">(that define the local properties of
+								charged fields, e.g. the covariant derivatives in the lagrangian)</i>
+						 	</p>
+						<img width="400" style="border: 0; box-shadow:none; background: rgba(256, 256, 256, 1);"
+						 alt="" align="right" data-src="assets/section3/lattice.svg" >
+					</div>
+				</section>
+
+				<section data-state="section3">
+					<h2>Gauge Degrees of Freedom <p>on a Triangulation</p></h2>
+					<p>Gauge variables are placed on <em>dual graph</em> links.</p>
+					<div style="position:relative; width:640px; height:350px; margin:0 auto 0 auto;">
+					<img class="fragment fade-out" data-fragment-index="0" width="600" height="280"
+					style="border: 0.05em solid #000000ff; position:absolute; top:0; left:0;
+					margin: 10 0 0 0" alt="" align="middle" data-src="assets/section3/dualgraph.svg" >
+ 					<img class="fragment fade-in" data-fragment-index="0" width="600" height="280"
+					style="border: 0.05em solid #000000ff; position:absolute; top:0; left:0;
+					margin: 10 0 0 0" alt="" align="middle" data-src="assets/section3/plaquettes.svg" >
+					</div>
+					<p style="margin-top: -1em">For this reason the <i>plaquettes</i> have <em>variable lengths</em>.</p>
+					<aside class="notes">
+						Anche <b>libertà di gauge</b> sui <i>triangoli</i>. E' figo perché è come
+						scegliere un <i>riferimento di gauge</i> per ogni elemento di spazio-tempo.
+						<br><br>
+						Altri argomenti per i gradi di libertà <b>giusti</b>:
+						<ul>
+							<li>sono <i>trasporti paralleli</i> fra elementi di spazio-tempo;</li>
+							<li><i>densità fissata</i> di gradi libertà in ogni dimensione.</li>
+						</ul>
+						<br>
+						Spiegare <i>cos'è una <b>placchetta</b></i> ai non teorici.
+					</aside>
+				</section>
+
+				<section data-state="section3">
+					<h2>Gravity + Gauge <p>action</p></h2>
+					<p>On the <em>gravity</em> side the action is still the Regge one:
+					</p>
+					<div class="mymath" style="font-size: 0.6em">
+						$$S_{Regge} = \frac{1}{16\pi G_N} \sum_{\sigma^{d-2} {\scriptscriptstyle\,\in\,} \mathcal{T}} 2\epsilon_{\sigma^{d-2}} V_{\sigma^{d-2}}
+						- \frac{\Lambda}{8\pi G_N} \sum_{\sigma^d {\scriptscriptstyle\,\in\,} \mathcal{T}} V_{\sigma^d}$$
+					</div>
+					<p>On the <em>gauge</em> side
+					</p>
+					<div class="mymath" style="font-size: 0.6em">
+						$$S_{Wilson} =  - \beta \sum_b \text{Re}\bigg\{ \text{Tr}(\Pi_b - 1)\bigg\}
+						~~~\Longrightarrow~~~
+						S_g = - \beta \sum_b \underbrace{\color{#e2b500ff}{\frac{1}{n_b}}}_{1/A}
+						\underbrace{\text{Re}\bigg\{ \text{Tr}(\Pi_b - 1)\bigg\}}_{F^2 A^2}$$
+					</div>
+					<aside class="notes">
+						<h2>Lunghezza Placchetta</h2>
+						$1/n_b$ serve per tenere di conto della lunghezza variabile delle placchette,
+						mentre in spazio piatto è indifferente, sono tutte uguali.
+					</aside>
+				</section>
+
+				<section data-state="section3">
+					<h2>Monte Carlo</h2>
+					<p>In order to measure observables' values it is possible to perform
+						numerical simulations, thanks to the <i>discrete structure</i> of triangulations.
+					</p>
+					<p>A <em>Markov Chain Monte Carlo</em> is used to sample the <i>distribution</i>
+						of configurations defined by the action: $~e^{- S_E(\{\varphi\})}$.</p>
+					<p>Observables are computed as <em>sample averages</em> in the spirit
+						of <i>path integral</i>:</p>
+					<div class="mymath">
+						$$ \langle \mathcal{O} \rangle = \int \mathcal{D}\varphi ~\mathcal{O} e^{- S_E(\{\varphi\})}
+						  \simeq \frac{1}{N} \sum_i \mathcal{O}_i $$
+					</div>
+					<p><em>Moves</em> in presence of gauge are <i>the same</i>, but the action on new variables
+						has to be defined.</p>
+					<p style="text-align:right; color: #662973">We had to define the new moves.</p>
+				</section>
+
+				<section>
+					<section data-state="section3">
+						<h2 style="margin-bottom: -0.2em">Monte Carlo upgrade <p>Move 22</p></h2> <!-- or upgraded -->
+						<p>To <i>maximize the acceptance</i> the move is done minimizing the
+							"distance" between the initial and final configuration.</p>
+						<img width="600" style="border: 0; box-shadow:none; background: rgba(0, 0, 0, 0);"
+						 alt="" align="middle" data-src="assets/section3/move22.svg" >
+						<p>A <em>gauge transformation</em> is done before to put the central
+							link to $\mathbb{1}$.</p>
+						<p><i>Note:</i> In order to be invertible a further <i>randomization</i> is performed.</p>
+						<aside class="notes">
+							Dato che non c'è un modo chiaro in cui identificare i gradi di libertà
+							con le classi di gauge la mossa inversa deve riportare nella stessa
+							configurazione le variabili di link.<br>
+							Dato che scegliamo di metterne una a 1 e ci resta fino in fondo senza
+							randomizzazione finale non ci sarebbe l'inversa.
+							<br><br>
+							Ovviamente la nuova acceptance tiene di conto il contributo del nuovo
+							termine di azione.
+						</aside>
+					</section>
+					<section data-state="section3">
+						<h2 style="margin-bottom: -0.2em">Monte Carlo upgrade <p>Test</p></h2>
+						<div class="box">
+							<p style="flex-basis: 50%">We did a huge amount of <em>tests</em> to check that
+								the algorithm were <i>consistent</i>.
+								<br> <br>
+							 	Such tests were needed because we <i>missed</i> the results of
+								<em>another implementation</em> of the model to compare with.</p>
+							<div style="flex-basis: 60%">
+							  <img width="500" style="border: 0; margin: 0; box-shadow:none; background: rgba(0, 0, 0, 0);"
+								 alt="" align="middle" data-src="assets/section3/hb_metr4__.png" >
+								<p style="text-align: center">&darr;</p>
+								<img width="500" style="border: 0; margin: 10 0 0 0; box-shadow:none; background: rgba(0, 0, 0, 0);"
+								 alt="" align="middle" data-src="assets/section3/22symm1__.png" >
+							</div>
+						</div>
+						<aside class="notes">
+						</aside>
+					</section>
+					<section data-state="section3">
+						<h2 style="margin-bottom: -0.2em">Monte Carlo upgrade <p>Test</p></h2>
+						<p>Some of the tests we made are:</p>
+						<ul style="margin: 0 0 0 2em">
+							<li>check that topological charge is $0$ on average;</li>
+							<li>check that observables are independent of non-physical simulation
+								parameters <i style="font-size: 0.7em">(such as move weights, that
+								do not enter in the detailed balance)</i>;</li>
+							<li>check that is symmetric under parity and time-reversal;</li>
+							<li>check the gauge-invariance of Wilson loops
+								<i style="font-size: 0.7em">(plaquettes and torelons)</i>.</li>
+						</ul>
+						<aside class="notes">
+						</aside>
+					</section>
+				</section>
+
+				<section data-state="section3">
+					<h2 style="margin-bottom: -0.2em">Monte Carlo upgrade <p>Move 24/42</p></h2>
+					<div>
+					  <p style="margin-bottom: 0"><em>Gauge transformations</em> are done:</p>
+					  <ul style="text-align: left; margin: 0 0 0 0">
+					  	<li>in <i>move 24</i> to put the central link to $\mathbb{1}$;</li>
+						  <li>in <i>move 42</i> to put three links of the central box to $\mathbb{1}$.</li>
+					  </ul>
+					</div>
+					<img width="600" style="border: 0; box-shadow:none; background: rgba(0, 0, 0, 0);"
+					 alt="" align="middle" data-src="assets/section3/move24.svg" >
+					<p>The new link is extracted with an <i>heatbath</i> algorithm.</p>
+					<p><i>Note:</i> In order to be invertible a further <i>randomization</i> is performed.</p>
+					<aside class="notes">
+						Il nuovo link è estratto con un heatbath.
+						<br>
+						Il casino delle normalizzazioni e la non scalabilità in dimensione viene
+						dall'heatbath che si fa per questa mossa, in cui i gradi di libertà
+						aumentano.
+					</aside>
+				</section>
+
+				<section data-state="section3">
+					<h2>Monte Carlo upgrade <p>Gauge Move</p></h2>
+					<img width="280" style="border: 0; box-shadow:none; background: rgba(0, 0, 0, 0);
+						margin: 0 5px" alt="" align="right" data-src="assets/section3/overheatbath.svg">
+					<p>The <i>gauge move</i> is performed at <em>fixed</em> triangulation.
+						<br><br>
+						We are extracting a single <em>gauge element</em> and updating it
+						through an <em>overheatbath</em> extraction.
+						<br><br>
+						This move ensures the <em>ergodicity</em> of the new algorithm.<br>
+						<i style="font-size: 0.7em">(a sequence of as many consecutive
+						moves as links is always possible for <br>each finite geometry)</i>
+					</p>
+				</section>
+
+				<!-- SECTION 4 -->
+
+				<section data-state="transition" data-transition="slide" data-background="#181818" data-background-transition="zoom">
+					<h2>Simulations' Results</h2>
+					<img class="fragment fade-in" data-fragment-index="0" data-src="assets/progress4v2.svg"
+						style="width: 500px; border:0; box-shadow:none; background: rgba(0, 0, 0, 0);" align='middle'>
+				</section>
+
+				<section data-state="section4">
+					<h2>Continuum limit</h2>
+					<p>The <i>topology</i> of the considered manifold is bound to be a <em>torus</em>. </p>
+					<img width="400" style="border: 0; box-shadow:none; background: rgba(0, 0, 0, 0);"
+					 alt="" align="middle" data-src="assets/section4/TorusTriang2.svg" >
+					<p>But the <i>geometry</i> it is free, and also its <i>volume</i>, so it is
+					 	possible to achieve a <em>continuum limit</em> for diverging volume. </p>
+				</section>
+
+				<section data-state="section4">
+					<h2 style="margin-bottom:0.6em">Geometry Observables</h2>
+					<p>The observables we are taking into account on the triangulation are:</p>
+					<ul style="margin: 0.2em 0 0.3em 0">
+						<li>the total <em>Volume</em>, proportional the <i>number of triangles</i>
+							$N_2$ of the triangulation;</li>
+						<li>the <em>profiles' correlation length</em>:</li>
+					</ul>
+					<div class="box">
+						<div style="flex-basis: 15%"></div>
+						<img height="350" style="border: 0.055em solid #000000ff; background: #fff;
+							margin: 0 5px; flex-basis: 40%" alt="" align="right"
+							data-src="assets/section4/profile_hist_b0_1.svg">
+						<div style="flex-basis: 15%"></div>
+						<img height="350" style="border: 0.055em solid #000000ff;
+							margin: 0 5px; flex-basis: 40%" alt="" align="right"
+							data-src="assets/section4/profile_b0_1.svg">
+					</div>
+					<aside class="notes">
+						Per il volume: anche <i>le osservabili caratteristiche della triangolazione</i>.
+					</aside>
+				</section>
+
+				<section data-state="section4">
+					<h2 style="margin: 0.3em 0 1em 0">Scaling at $\beta = 0$</h2>
+					<div class="box">
+						<div class="box" style="flex-direction: column; flex-basis: 50%">
+							<img width="800" style="border: 0.055em solid #000000ff;
+								margin: 0 5px 0.5em 5px" alt="" align="right"
+								data-src="assets/section4/beta0_vol.svg">
+							<p>Volumes: $\frac{A}{(\lambda - \lambda_c)^\mu}$</p>
+							<table style="font-size: 0.7em; margin-top: 0.5em">
+							  <tr>
+							    <th style="text-align: center">$\lambda_c$</th>
+							    <th style="text-align: center">$\mu$</th>
+							    <th style="text-align: center">$A$</th>
+							  </tr>
+							  <tr>
+							    <td>0.69319 (5)</td>
+							    <td>0.394 (14)<br></td>
+							    <td>279 (21)</td>
+							  </tr>
+							</table>
+						</div>
+						<div class="box" style="flex-direction: column; flex-basis: 50%">
+							<img width="800" style="border: 0.055em solid #000000ff;
+								margin:  0 5px 0.5em 5px" alt="" align="right"
+								data-src="assets/section4/beta0_pro.svg">
+							<p>Profiles' lengths: $\frac{A}{(\lambda - \lambda_c)^\nu}$</p>
+							<table style="font-size: 0.7em; margin-top: 0.5em">
+							  <tr>
+							    <th style="text-align: center">$\lambda_c$</th>
+							    <th style="text-align: center">$\nu$</th>
+							    <th style="text-align: center">$A$</th>
+							  </tr>
+							  <tr>
+							    <td>0.69299 (6)</td>
+							    <td>0.527 (18)<br></td>
+							    <td>0.299 (30)</td>
+							  </tr>
+							</table>
+						</div>
+					</div>
+					<div class="mymath">
+						$$ \log 2 = 0.693147 $$
+					</div>
+				</section>
+
+				<section data-state="section4">
+					<h2 style="margin-bottom: -0.2em">Effect of Gauge <p>on Gravity dynamics</p></h2>
+					<p style="margin-top: 0">The expected effect of <em>gauge fields</em> on the dynamics of 2D CDT
+						is simply a <em>shift</em> in the critical value $\lambda_c$.</p>
+					<img width="570" style="border: 0.055em solid #000000ff;
+						margin:  0 5px" alt="" align="middle"
+						data-src="assets/section4/gaugefix.svg">
+					<!-- <p>Discussione teorica, con l'argomento di D'Elia (gauge fixing) e figura</p> -->
+					<p>Applying a suitable <em>gauge fixing</em> and a change of variable is <i>almost</i>
+						possible to integrate over <em>plaquettes</em> in the path integral.</p>
+					<div class="mymath">
+						$$
+						\int \mathcal{D} \varphi ~ e^{-\lambda V + \beta \sum_{i=1}^V f(\Pi_i)} \rightarrow
+						\int \mathcal{D} \Pi ~ e^{-\lambda V + \beta \sum_{i=1}^V f(\Pi_i)} =
+						e^{-\lambda V} \left(e^{C(\beta)}\right)^V
+						$$
+					</div>
+					<aside class="notes">
+						Si ottiene quindi un contributo costante per ogni plaquette che può essere
+						riesponenziato in uno shift che va col numero di plaquette, e quindi col
+						volume. Cioè un termine <b>cosmologico</b>.
+						<br><br>
+						L'argomento vale solo in 2D, in più dimensioni non c'è il gaugefixing, né
+						il numero di placchette è proporzionale al volume.
+					</aside>
+				</section>
+
+				<section data-state="section4">
+					<h2 style="margin-bottom: 0.6em">Observed shift in $\lambda$</h2>
+					<p>The predicted shift is observed in simulations:</p>
+					<img width="550" style="border: 0.055em solid #000000ff;  margin: 0"
+						alt="" align="middle" data-src="assets/section4/lambda_c_beta.svg">
+					<p>the <i style="color: #d62728">red</i> curve is the expectation in the
+						strong coupling limit, while the <i style="color: #2ca02c">green</i> one
+						is associated <i>triangular plaquettes</i>.</p>
+				</section>
+
+				<section data-state="section4">
+					<h2>Critical Indices</h2>
+					<p>Another confirmation that the <em>physics</em> of triangulation does
+						<em>not depend</em> on gauge presence, is that critical indices does
+						not depend on $\beta$</p>
+						<div class="box" style="margin-top: 0.8em">
+							<div style="flex-basis: 15%"></div>
+							<img height="350" style="border: 0.055em solid #000000ff; background: #fff;
+								margin: 0 5px; flex-basis: 40%" alt="" align="right"
+								data-src="assets/section4/alpha_vol.svg">
+							<div style="flex-basis: 15%"></div>
+							<img height="350" style="border: 0.055em solid #000000ff;
+								margin: 0 5px; flex-basis: 40%" alt="" align="right"
+								data-src="assets/section4/alpha_pro.svg">
+						</div>
+				</section>
+
+				<section data-state="section4">
+					<h2>Gauge Observables</h2>
+					<p>We consider also gauge observables, to control the effect of the
+						dynamical background on gauge dynamics. These are:
+						<!-- Carica e Suscettività topologica <br><br>
+					Lunghezza dei toreloni; immagine del torelone(toro).</p> -->
+					<ul style="margin: 0.3em">
+						<li>the <em>topological charge</em> $Q$ and the related <em>topological
+						susceptibility</em> $\chi$;</li>
+						<li>the <em>correlation length</em> of the <em>torelons</em>.</li>
+					</ul>
+					<img width="400" style="border: 0; box-shadow:none;
+						background: rgba(0, 0, 0, 0); margin: 0.5em 0 0 0" alt="" align="middle"
+						data-src="assets/section4/torelon.svg">
+				</section>
+
+				<section data-state="section4">
+					<h2>Continuum limit for $\chi$</h2>
+					<p>The topological susceptibility is an observables of <i>mass dimension <b>2</b></i>:</p>
+					<div class="mymath">
+						$$ \chi = \left\langle\frac{Q^2}{V}\right\rangle$$
+					</div>
+					<p>so in order to an adimensional quantity we need to multiply it for
+						another dimensionful one:</p>
+					<div class="mymath">
+						$$ \chi \cdot \beta $$
+					</div>
+					<p>where $\beta$ is the gauge coupling.</p>
+				</section>
+
+				<section>
+					<section data-state="section4">
+						<h2>Continuum limit for $\chi\beta$</h2>
+						<p>The continuum limit for the adimensional quantity attains a finite
+							value.</p>
+						<img height="350" style="border: 0.055em solid #000000ff; margin: 5px"
+						  alt="" align="middle" data-src="assets/section4/top_beta.svg">
+						<p>The prediction for this quantity for a theory with a static
+							background, suitably adapted, is $\frac{3}{4\pi^2}$, and is
+							marked by the <i style="color: green">green line</i>.</p>
+					</section>
+					<section data-state="section4">
+						<h2>$\chi$ dependence on $\lambda$</h2>
+						<p>It is possible to perform a continuum limit on $\chi$ without knowing
+							the exact line to do it in the plane $\lambda-\beta$, because it
+							does not depend on $\lambda$.</p>
+						<div class="box">
+							<img height="350" style="border: 0.055em solid #000000ff; margin: 0 5px"
+							  alt="" align="middle" data-src="assets/section4/fit_top_beta12.svg">
+							<img height="350" style="border: 0.055em solid #000000ff; margin: 0 5px"
+							  alt="" align="middle" data-src="assets/section4/fit_top_beta60.svg">
+						</div>
+						<p>Furthermore this prove that the limit $\lambda \rightarrow \lambda_c$
+							is not a good continuum limit.</p>
+						<aside class="notes">
+							Se l -> l_c fosse un buon limite al continuo $\chi$ dovrebbe scalare
+							dato che è una quantità dimensionata.
+						</aside>
+					</section>
+					<section data-state="section4">
+						<h2>Freezing Q</h2>
+						<p>The topological susceptibility $\chi$ is not reliable for arbitrary
+							high $\beta$, because the charge $Q$ tends to freeze its value,
+							reducing too much the amount of datas.</p>
+						<img height="350" style="border: 0.055em solid #000000ff; margin: 0 5px"
+						  alt="" align="middle" data-src="assets/section4/freezing.svg">
+					</section>
+				</section>
+
+				<section>
+					<section data-state="section4">
+						<h2>Continuum Limit<p>with Torelons' Length</p></h2>
+						<div class="box">
+							<div>
+								<p>The torelons length is a <em>correlation length</em> coming
+									from the gauge structure.</p>
+								<p>It can be used to <i>define</i> a "correct" continuum limit,
+									<em>tuning the ratio</em> with a length in the gravity sector,
+									e.g. the profiles' length.</p>
+							</div>
+							<img height="280" style="border: 0.055em solid #000000ff; margin: 0 10px"
+							  alt="" align="right" data-src="assets/section4/tor100.svg">
+						</div>
+					</section>
+					<section data-state="section4">
+						<h2 style="margin-bottom: 0">Torelons' length <p>and dependence
+							on $\lambda$</p></h2>
+						<p style="margin: -0.4em 0 0.4em 0">The torelons' length prominence is big
+							enough only for high $\beta$.</p>
+							<!-- , so we have few statistic.</p> -->
+						<img height="400" style="border: 0.055em solid #000000ff; margin: 0 0 0 0"
+						  alt="" align="middle" data-src="assets/section4/tor_len_scal.svg">
+						<p style="margin-top: 0">Differently from the ordinary correlation lengths
+							it seems to vanish in the continuum limit.</p>
+					</section>
+				</section>
+
+				<!-- SECTION 5 -->
+
+				<section data-state="transition" data-transition="slide" data-background="#181818" data-background-transition="zoom">
+					<h2>Conclusion and Perspectives</h2>
+					<img class="fragment fade-in" data-fragment-index="0" data-src="assets/progress5v2.svg"
+						style="width: 500px; border:0; box-shadow:none; background: rgba(0, 0, 0, 0);" align='middle'>
+				</section>
+
+				<section data-state="section5">
+					<h2>Results <p>effects on gravity dynamics</p></h2>
+					<p>
+						We found that at <i>fixed $\beta$</i> the <em>physics</em> of the
+						triangulations is <em>not affected by the gauge fields</em>, unless
+						a shift in $\lambda$:
+					</p>
+					<ul style="margin-left: 2em">
+						<li>we compute the shift in $\lambda_c$ as a function of $\beta$;</li>
+						<li>we verified that critical exponents are always compatible with
+							those for $\beta = 0$;</li>
+						<li>we found a theorethical explanation of the observed behavior.</li>
+					</ul>
+					<!-- Despite the previous results -->
+					<p>The behavior at fixed $\beta$ <i>is not the correct continuum</i>
+						 limit, so in the physical scenario <em>the dynamics could still be
+						 affected</em> by the presence of gauge fields.</p>
+				</section>
+
+				<section data-state="section5">
+					<h2>Results <p>effects on gauge dynamics</p></h2>
+					<!-- back-reaction/effects on gauge -->
+					<p>
+						We analyzed the <em>topological susceptibility</em>:
+					</p>
+					<ul style="margin-left: 2em">
+						<li>for it the <i>correct continuum limit</i> was available, given
+							that we verified that its value depends only on $\beta$ and not on
+							$\lambda$;</li>
+						<li>we found that the result was compatible of the limit for the
+							adimensional quantity $\chi\beta$ is compatible.</li>
+					</ul>
+					<p>
+						We found and implemented a <i>reference gauge correlation length</i>,
+						considering the <em>torelon</em> loops.<br>
+						This quantity will be involved in the definition of a suitable
+						continuum limit for all other quantities, both in gauge and geometry
+						sector.
+					</p>
+				</section>
+
+				<section>
+					<section data-state="section5">
+						<h2>Perspectives <p>Further analysis</p></h2>
+						<p>Some future developments simply consist in improve the analysis of
+							data from present algorithm, in particular:</p>
+						<ul>
+							<li>improving the correlation lengths estimation;</li>
+							<li>performing a <em>correct continuum limit</em>, keeping constant
+								the ratio of two <i>correlations length</i> (profiles and torelons);</li>
+							<li>performing a <em>strong coupling limit</em>, trying to make more
+							 	accurate predictions in this limit (e.g. for $\lambda_c$ shift).</li>
+						</ul>
+					</section>
+					<section data-state="section5">
+						<h2>Further analysis <p>Universality class</p></h2>
+						<div class="box" style='flex-direction: column'>
+							<p>Another interesting investigation, not involving simulations,
+								would be to find the <em>universality class</em> for our model, i.e.
+								<em>CDT </em>and<em> CDT with gauge</em>.</p>
+							<p>This would be useful to obtain a new point of view on our model,
+								and to compare the effect of gauge in the dynamics of
+								triangulations.</p>
+							<p>Furthermore the comparison with theoretical results for critical
+								indices would be <em>another validation</em> of our algorithm.</p>
+						</div>
+					</section>
+				</section>
+
+				<section>
+					<section data-state="section5">
+						<h2>Perspectives <p>Higher dimension</p></h2>
+						<p>A direct sought improvement is to extend the algorithm for gauge
+							fields in <i>higher dimension</i>, i.e. dimensions 3 and 4.</p>
+						<p>The principal issue is related to <em>normalization's integrals</em>
+						 	in volume-changing moves.</p>
+						<p>Indeed in higher dimension there would be needed simultaneous
+							extraction of more gauge elements, leading to "multidimensional"
+							integrals in normalization.</p>
+						<aside class="notes">
+							Con <i>multidimensionale</i> si intende "su più copie del gruppo".
+							<br><br>
+							Le integrazioni sarebbero non banali (non fattorizabili) perché
+							essend un heatbath il valore di un link fa da potenziale per quello
+							vicino.
+						</aside>
+					</section>
+					<section data-state="section5">
+						<h2>Higher dimension <p>3D example: move 26</p></h2>
+						<img height="250" style="border: 0; box-shadow:none;
+							background: rgba(0, 0, 0, 0); margin: 0" alt="" align="middle"
+							data-src="assets/section5/26t.png">
+						<div class="box">
+							<div style="flex-basis: 50%">
+								<p>2 gauge transf. (1 independent) <br>
+									1 link <br></p>
+								<hr>
+								<p>0 free gauge elements.</p>
+							</div>
+							<div style="flex-basis: 50%">
+								<p>6 gauge transf. (5 independent) <br>
+								9 link <br></p>
+								<hr>
+								<p>4 free gauge elements.</p>
+							</div>
+						</div>
+						<!-- <p>Descrizione dettagliata problemi dimensione maggiore <br>
+						 	Magari faccio per bene il conto in dimensione 3 su quanti
+							sarebbero gli integrali per la mossa 26.</p> -->
+					</section>
+				</section>
+
+				<section>
+					<section data-state="section5">
+						<h2>Perspectives <p>New Models</p></h2>
+						<p>The same algorithm we employed for $U(1)$ is available for each
+							gauge group, provided the following two requirements:</p>
+							<ol>
+								<li>a suitable <em>heatbath</em> algorithm;</li>
+								<li>an applicable expression for the <em>normalization integral</em>.</li>
+							</ol>
+						<p>The <i>condition 1</i> is satisfied for many groups already employed
+							in simulations, while <i>condition 2</i> we already have appropriate
+							expressions for $SU(2)$ and $U(N)$ groups <i  class="citation">Brower,
+							Rossi and Tan</i>.</p>
+						<aside class="notes">
+							Dimensione maggiore.
+						</aside>
+					</section>
+					<section data-state="section5">
+						<h2>New Models <p>Matter Fields</p></h2>
+						<p>Another interesting upgrade would be the introduction of
+							<em>Matter Fields</em>.</p>
+						<p>There are two possible kind of matters, <em>scalars</em> and
+							<em>fermions</em>, both would be placed on maximal simplices (2D:
+							triangles), and need three main upgrades in the algorithm, the
+							same we did for gauge fields:</p>
+						<ul style="margin-left: 1.5em">
+							<li>a <i>dedicated</i> update <i>move</i>;</li>
+							<li>suitable terms in the <i><b>action</b></i> (free and interaction), and
+								consequent updates to the <i>acceptance</i> of the <i>other moves</i>;</li>
+							<li>definition of fields' behavior in <i>geometry (CDT) moves</i>.</li>
+						</ul>
+					</section>
+				</section>
+
+				<!-- <section>
+				    <h3>Doing two-column (this headline still full-width)</h3>
+
+						<div class="row">
+						  <div class="column" style="background-color:#aaa;">
+						    <h2>Colum 1</h2>
+						    <p>Some text..</p>
+								<div class="row">
+								  <div class="column" style="background-color:#aaa;">
+								    <h4>Com 1</h4>
+								    <p>Some </p>
+							 		</div>
+								  <div class="column" style="background-color:#bbb;">
+								    <h4>Colum 2</h4>
+						    		<p>Some text..</p>
+						  		</div>
+								</div>
+								<div class="row">
+								  <div class="column" style="background-color:#aaa;">
+								    <h4>Com 1</h4>
+								    <p>Some </p>
+								  </div>
+								  <div class="column" style="background-color:#bbb;">
+								    <h4>Colum 2</h4>
+						    		<p>Some text..</p>
+						  		</div>
+								</div>
+					  	</div>
+						  <div class="column" style="background-color:#bbb;">
+						    <h3>Colum 2</h3>
+						    <p>Some text..</p>
+						  </div>
+						  <div class="column" style="background-color:#ccc;">
+						    <h3>Colum 3</h3>
+						    <p>Some text..</p>
+						  </div>
+						  <div class="column" style="background-color:#ccc;">
+						    <h3>Colum 4</h3>
+						    <p>Some text..</p>
+						  </div>
+				</section> -->
+
+				<!-- Example of nested vertical slides -->
+				<!-- <section>
+					<section>
+						<h2>Vertical Slides</h2>
+						<p>Slides can be nested inside of each other.</p>
+						<p>Use the <em>Space</em> key to navigate through all slides.</p>
+						<br>
+						<a href="#" class="navigate-down"> -->
+							<!-- <img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow"> -->
+							<!-- <img width="500" height="320" data-src="assets/freezing.svg" alt="Down arrow">
+						</a>
+					</section>
+					<section>
+						<h2>Basement Level 1</h2>
+						<p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
+					</section>
+					<section>
+						<h2>Basement Level 2</h2>
+						<p>That's it, time to go back up.</p>
+						<br>
+						<a href="#/34">
+							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="transform: rotate(180deg); -webkit-transform: rotate(180deg);">
+						</a>
+					</section>
+				</section> -->
+
+				<!-- <section data-state="someclass">
+					<h3>Ciao</h3>
+					<p>Come stai?</p>
+				</section> -->
+
+				<section data-state="end" data-background="assets/triangles.svg" id="endSlide">
+					<!-- <div class="box" style="align-items: center; justify-content: center;"> -->
+						<h2 style="font-size: 1.7em; margin: 1em 0 0 0">THANK YOU<p>for listening</p></h2>
+					<!-- </div> -->
+					<!-- <p>
+						- <a href="https://slides.com">Try the online editor</a> <br>
+						- <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
+					</p> -->
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			var colorS1 = "red";
+			var transitions = [2, 5, 7, 9, 11];
+			var endSections = 13;
+
+			Reveal.addEventListener( "someclass", function() {
+				console.log("Bene, e tu?")
+			} );
+
+			Reveal.addEventListener('slidechanged', (event) => {
+				var dataState = String(document.getElementsByTagName("html")[0].className)
+				const isTitle = event.indexh === 0;
+				const isOverview = dataState === "overview";
+				const isTransition = dataState === "transition";
+				const isSection1 = dataState === "section1";
+				const isSection2 = dataState === "section2";
+				const isSection3 = dataState === "section3";
+				const isSection4 = dataState === "section4";
+				const isSection5 = dataState === "section5";
+				const isEnd = dataState === "end";
+				const isSomeClass = dataState === "someclass";
+
+
+				// If I use Reveal.configure it overrides backgroundTransition with fade
+				// for each slide, needs to be solved
+  			Reveal.configure({ slideNumber: (isTitle || isTransition || isEnd) ? false : //'c/t'
+					function() {
+    			// Ignore numbering of vertical slides
+    				return [ String(Reveal.getIndices().h + 1) + ' / '
+						+ String(Reveal.getIndices( document.getElementById( 'endSlide' )).h + 1) ];}
+					});
+
+				if (isTitle || isEnd){
+					document.getElementsByClassName("controls")[0].style.display = 'none';
+					document.getElementsByClassName("progress")[0].style.display = 'none';
+				}
+				else{
+					document.getElementsByClassName("controls")[0].style.display = 'none';
+					document.getElementsByClassName("progress")[0].style.display = 'block';
+				}
+
+				if (isTransition){
+					setTimeout(function(){
+						Reveal.nextFragment();
+					}, 400);
+					document.getElementsByClassName("progress")[0].getElementsByTagName("span")[0].style.color = "white";
+				}
+				else if(isOverview){
+					document.getElementsByClassName("progress")[0].getElementsByTagName("span")[0].style.color = "#333";
+				}
+				else if(isSection1){
+					document.getElementsByClassName("progress")[0].getElementsByTagName("span")[0].style.color = "#be0000ff";
+				}
+				else if(isSection2){
+					document.getElementsByClassName("progress")[0].getElementsByTagName("span")[0].style.color = "#e66c00ff";
+				}
+				else if(isSection3){
+					document.getElementsByClassName("progress")[0].getElementsByTagName("span")[0].style.color = "#e2b500ff";
+				}
+				else if(isSection4){
+					document.getElementsByClassName("progress")[0].getElementsByTagName("span")[0].style.color = "#96c800ff";
+				}
+				else if(isSection5){
+					document.getElementsByClassName("progress")[0].getElementsByTagName("span")[0].style.color = "#0050aaff";
+				}
+				else if(isSomeClass){
+					document.getElementsByClassName("progress")[0].getElementsByTagName("span")[0].style.color = "red";
+				}
+				else{
+					document.getElementsByClassName("progress")[0].getElementsByTagName("span")[0].style.color = "#2a76dd";
+				}
+			});
+			Reveal.addEventListener('fragmenthidden', (event) => {
+				var dataState = String(document.getElementsByTagName("html")[0].className)
+        const currentSlide = Reveal.getIndices();
+				const isTitle = currentSlide.h === 0;
+				const isTransition = dataState === "transition";
+
+				if (isTransition){
+					Reveal.left();
+				}
+			});
+
+			// ============================ //
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				center: true,
+				hash: true,
+				pdfSeparateFragments: false,
+
+				height: '100%',
+				width: '75%',
+
+				// Display the page number of the current slide
+				slideNumber: false,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				math: {
+								mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+								config: 'TeX-AMS_HTML-full', // See http://docs.mathjax.org/en/latest/config-files.html
+								// pass other options into `MathJax.Hub.Config()`
+								TeX: { Macros: { RR: "{\\bf R}" } }
+							},
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true },
+					{ src: 'plugin/search/search.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/math/math.js', async: true }
+				]
+			});
+
+			// `plugin/notes/notes.html 745`: inserted "value = 'tall';"
+			// remove for default behavior
+
+			document.getElementsByClassName("progress")[0].style.display = 'none';
+
+
+		</script>
+
+	</body>
+</html>
