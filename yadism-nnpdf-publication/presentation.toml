@@ -6,4 +6,5 @@ title = "yadism-nnpdf-publication"
 name = "split-html-only"
 
 [theme]
-name = "serif.css"
+#name = "serif.css"
+name = "test.css"
