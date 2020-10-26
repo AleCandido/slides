@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme.css" id="theme">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        
+        <section>
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              height: 60vh;
+            "
+          >
+            <div
+              style="
+                background-image: url('assets/logo.png');
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center;
+                height: 70%;
+                filter: blur(2px);
+                opacity: 0.7;
+              "
+            ></div>
+          </div>
+
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              height: 50vh;
+              position: absolute;
+              top: 70%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              z-index: 2;
+              width: 80%;
+              padding: 20px;
+              text-align: center;
+            "
+          >
+            <div>
+              <h1 style="text-transform: none">DISaaS</h1>
+              <p>26 October 2020</p>
+            </div>
+          </div>
+        </section>
+        
+        <section>
+          <h4>Brief Intro:</h4>
+          <h2>Container & Images</h2>
+          <p style="font-size: 0.65em">
+            A container is an isolated process, run by the actual kernel of the host (not
+            a virual one). It is useful to package a software with its own dependencies.
+          </p>
+          <img src="assets/containerfile.png" alt="Containerfile" style="height: 6em" />
+          <p style="font-size: 0.65em">
+            An image is the packaged software and environment needed for running a
+            container, as it is stored on a disk.
+          </p>
+        </section>
+        
+        <section>
+          <h4>Already In:</h4>
+          <h2>NNPDF</h2>
+          <p style="font-size: 0.65em">
+            In <code>NNPDF/nnpdf</code> container are already present.
+          </p>
+          <img
+            src="assets/zahari-container.png"
+            alt="NNPDF Zahari's container"
+            style="height: 6em"
+          />
+          <p style="font-size: 0.65em">
+            But this container package only build dependency, so it used copying the code
+            at runtime, in order to provide a build environment.
+          </p>
+        </section>
+        
+        <section>
+          <h2>What's new</h2>
+          <p style="font-size: 0.65em">
+            The idea of <code>DISaaS</code> instead is to package the software itself in an image.
+            <ul style="font-size: 0.65em; width: 25em">
+              <li>Provide compiled software working <em>out of the box</em></li>
+                <ul style="font-size: 0.75em; width: 25em">
+                  <li>This will make easier to use legacy physics software, usually
+                    <em>compiled</em> and sometimes <em>dependent on old software</em></li>
+                  <li>It will also make still useful to write compiled software when
+                    needed, since <em>portability</em> is guaranteed by the container
+                    infrastructure</li>
+                </ul>
+              <li>Exploit <em>multi-stage build</em>: build dependencies are not
+                packaged, making the image lighter</li>
+              <li>Use in <em>CI workflows</em></li>
+            </ul>
+          </p>
+
+          <p style="font-size: 0.65em">
+            <strong>E.g.:</strong> packaging <code>APFEL</code> in a container will make
+            it easier to benchmark <code>yadism</code> on multiple systems and in
+            workflows.
+          </p>
+        </section>
+        
+        <section>
+          <h2>Project</h2>
+          <p style="font-size: 0.65em">
+            At the moment I'm attempting a <strong>proof of concept</strong>:
+            <ul style="font-size: 0.65em; width: 35em">
+              <li>Build a container image with an <code>APFEL</code> installation, and make it as light as possible</li>
+              <li>Deploy the image on <code>GitHub Container Registry</code> (there is one per user/organization and per repo)</li>
+            </ul>
+          </p>
+          <img src="assets/ghcr.png" alt="GitHub Packages" style="height: 6em" />
+
+          <p style="font-size: 0.65em">
+              More info in the <a href="https://n3pdf.github.io/DISaaS/stable/">project documentation</a>.
+          </p>
+        </section>
+        
+        <section>
+          <h4>A little bit of:</h4>
+          <h2 style="text-transform: none"><s>Hubris</s> API</h2>
+          <p style="font-size: 0.65em">
+            A final step of the project will be to produce:
+            <dl style="font-size: 0.65em; width: 25em">
+              <dt>API</dt>
+              <dd>A <code>python</code> and <a
+                href="https://graphql.org/"><code>GraphQL</code></a> based API, to
+                smoothly interact with the running instance inside the container.</dd>
+              <dt>Redis</dt>
+              <dd>Furthermore the results will be stored in a 
+                <a href="https://graphql.org/"><code>Redis</code></a>
+                instance installed inside the container, and retrieved through a
+                connection.</dd>
+            </dl>
+          </p>
+        </section>
+        
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/math/math.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMath, RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+    </script>
+  </body>
+</html>

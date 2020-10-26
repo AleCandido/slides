@@ -1,0 +1,10 @@
+# use this file to choose structure, theme, and some other common configs
+
+title = "disaas-to-n3pdf"
+
+[structure]
+name = "split-html-only"
+
+[theme]
+#name = "serif.css"
+name = "white.css"
