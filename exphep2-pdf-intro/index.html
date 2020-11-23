@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href=".reveal_dist/dist/reset.css" />
+    <link rel="stylesheet" href=".reveal_dist/dist/reveal.css" />
+    <link
+      rel="stylesheet"
+      href=".reveal_dist/dist/theme/white.css"
+      id="theme"
+    />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href=".reveal_dist/plugin/highlight/monokai.css"
+      id="highlight-theme"
+    />
+
+    <!--User defined header-->
+    <link
+      rel="stylesheet"
+      href="https://gitcdn.link/repo/highlightjs/highlight.js/master/src/styles/nord.css"
+      id="highlight-theme"
+    />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">-->
+    <style type="text/css" media="screen">
+      .slide {
+        background-color: hsla(180, 20%, 100%, 0.1);
+      }
+
+      :root {
+        --scale: 0.8;
+      }
+
+      .reveal.slide .slides > section:not([data-transition]).past {
+        transform: translate(-150%, 0) scale(var(--scale));
+      }
+
+      .reveal.slide .slides section.stack.present {
+        transform: scale(var(--scale));
+      }
+
+      .reveal.slide .slides > section:not([data-transition]).future {
+        transform: translate(150%, 0) scale(var(--scale));
+      }
+
+      p,
+      li,
+      dd {
+        font-size: 0.8em;
+        text-align: left;
+      }
+      ::marker {
+        font-size: 0.8em;
+      }
+    </style>
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        
+        <!-- prettier-ignore -->
+        <section  data-background-image="assets/pdf_cover.png" data-background-opacity="0.5">
+          
+          
+          <section>
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                z-index: 2;
+                padding: 20px;
+                text-align: center;
+              "
+            >
+              <h1 style="text-transform: none; font-size: 2em">
+                Parton Distribution Functions
+              </h1>
+              <p style="text-align: center">November 2020</p>
+            </div>
+          </section>
+          
+
+        </section>
+        
+        <!-- prettier-ignore -->
+        <section  example="example">
+          
+          
+          <section data-markdown data-separator="^ *@---">
+            <textarea data-template>
+              ## Outline
+
+                <div style="display: flex; margin: auto; width: max-content;">
+                  <div>
+                  <ol>
+                    <li style="margin-bottom: 1em;">Intro
+                      <ul>
+                        <li>presentation</li>
+                        <li>data</li>
+                      </ul>
+                    </li>
+                    <li>Theory
+                      <ul>
+                        <li>divergences</li>
+                        <li>DGLAP</li>
+                        <li>solving evolution</li>
+                    </li>
+                  </ol>
+                  </div>
+                  <div>
+                  <ol start="3">
+                    <li>Fit & Neural Network
+                      <ul>
+                        <li>definition</li>
+                        <li>methods</li>
+                        <li>testing</li>
+                    </li>
+                  </ol>
+                  </div>
+                </div>
+            </textarea>
+          </section>
+          
+
+        </section>
+        
+        <!-- prettier-ignore -->
+        <section >
+          
+          
+          <section data-markdown data-separator="^ *@---">
+            <textarea data-template>
+              ## Presentation
+
+                <div style="display:flex;">
+                  <div style="margin-right: 2rem">
+                    <p>
+                      I'm Alessandro Candido, a previous student @ SNS, and currently a PhD @ Unimi.
+                    </p>
+                    <p>
+                      I'm also a member of N3PDF team lead by prof. Stefano Forte, and of the NNPDF
+                      collaboration.
+                    </p>
+                    <img src="assets/n3pdf_logo.png" width="240rem" style="margin: 2rem"/>
+                    <img src="assets/nnpdf_logo.png" width="240rem" style="margin: 2rem"/>
+                  </div>
+                  <img src="assets/photo.png" width="300rem"/>
+                </div>
+            </textarea>
+          </section>
+          
+
+        </section>
+        
+        <!-- prettier-ignore -->
+        <section  data-background-image="assets/nnpdf-web.png" data-background-opacity="0.15">
+          
+          
+          <section data-markdown data-separator="^ *@---">
+            <textarea data-template>
+              ## Resources
+
+                The content of this lectures is a summary of NNPDF work, so everything can be
+                found of course in the papers of the collaboration.
+
+                All the references to this works and PDF-sets are available on the [NNPDF
+                website](http://nnpdf.mi.infn.it/), together with other useful resources, such
+                as:
+
+                <div style="display: flex;">
+                  <ul>
+                    <li>
+                    brief methodological descriptions
+                    </li>
+                    <li>
+                    status of the projects (not updated)
+                    </li>
+                    <li>
+                    references to developed software
+                    </li>
+                    <li>
+                    ... and more :)
+                    </li>
+                  </ul>
+                  <img src="assets/nnpdf-people.png" width="60%"/>
+                </div>
+
+                @---
+
+                ## N3PDF
+
+                And of course there is also a [N3PDF website](http://n3pdf.mi.infn.it/), the
+                main relevant resources are:
+
+                - references to member's papers and talks
+                - references to the software
+
+                ![N3PDF team](assets/n3pdf-people.png)
+            </textarea>
+          </section>
+          
+
+        </section>
+        
+        <!-- prettier-ignore -->
+        <section >
+          
+          
+          <section data-markdown data-separator="^ *@---">
+            <textarea data-template>
+              ## Organization
+
+                The NNPDF work is organized in 3 + 1 parts:
+
+                ![organization](assets/organization.png)
+
+                @---
+
+                ## Data
+
+                The **data** tasks consist mainly in implementing the theory predictions' tables to
+                compare the PDF fit to the experimental datasets available.
+
+                <img src="assets/data.png" alt="data-goals" style="margin: auto;">
+
+                @---
+
+                ## Theory
+
+                The **theory** job consist not only in studying the theoretical properties of
+                the PDF and pQCD (mainly done by the single groups)
+
+                <img src="assets/theory.png" alt="theory-goals" style="margin: auto;" height="300vh">
+
+                but especially in _implementing the software_ to make the **predictions** available
+                for the fit.
+
+                @---
+
+                ## Methodology
+
+                The **methodology** is the hood for anything related to the fit:
+
+                <div style="display: flex">
+                  <div style="display: flex; flex-direction: column; justify-content: center">
+                    <ul>
+                      <li>
+                      new ML methods and techniques
+                      </li>
+                      <li>
+                      managing physical constraints
+                      </li>
+                      <li>
+                      asses the <em>quality of fit</em> through tests
+                      </li>
+                    </ul>
+                  </div>
+                  <img src="assets/methodology.png" alt="methodology-goals" style="margin: auto;" width="400vw">
+                </div>
+            </textarea>
+          </section>
+          
+
+        </section>
+        
+        <!-- prettier-ignore -->
+        <section >
+          
+          
+          <section data-markdown data-separator="^ *@---">
+            <textarea data-template>
+              ## Dataset
+
+                <div style="display: flex">
+                  <img src="assets/nnpdf31-data.png" alt="dataset" style="margin: 2rem" width="350vw">
+                  <div>
+                    <p style="font-size: 0.7em">
+                      The data-set related to the last released version (NNPDF 3.1) was mainly
+                      dominated by 2 sources:
+                    </p>
+                    <dl>
+                      <dt style="font-size: 0.8em">HERA</dt>
+                      <dd style="font-size: 0.6em">
+                      They are <strong>DIS</strong> data, and therefore a clean probe of proton
+                      constituents, historically the most relevant.
+                      </dd>
+                      <dt style="font-size: 0.8em">LHC</dt>
+                      <dd style="font-size: 0.6em">
+                      They are hadronic events, involving two partons at a time. The data
+                      abundance still makes them very relevant.
+                      </dd>
+                    </dl>
+                    <p style="font-size: 0.7em">
+                      Which one will dominate the next PDF generation it's an open question.
+                    </p>
+                  </div>
+                </div>
+            </textarea>
+          </section>
+          
+
+        </section>
+        
+      </div>
+    </div>
+
+    <script src=".reveal_dist/dist/reveal.js"></script>
+    <script src=".reveal_dist/plugin/notes/notes.js"></script>
+    <script src=".reveal_dist/plugin/markdown/markdown.js"></script>
+    <script src=".reveal_dist/plugin/highlight/highlight.js"></script>
+    <script src=".reveal_dist/plugin/math/math.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMath, RevealMarkdown, RevealHighlight, RevealNotes],
+
+        // configure 'marked'
+        markdown: {
+          smartypants: true,
+        },
+      });
+    </script>
+
+    <!--User defined footer-->
+    <script>
+      cover_bg = document
+        .getElementsByClassName("backgrounds")[0]
+        .firstChild.getElementsByClassName("slide-background-content")[0];
+
+      cover_bg.style.filter = "blur(4px)";
+    </script>
+
+  
+    <!--RELOAD-->
+    <script type='application/javascript' src='httpwatcher.bundle.js'></script>
+    <script type='application/javascript'>httpwatcher('ws://localhost:1234/httpwatcher');</script>
+    <!--ENDRELOAD-->
+    </body>
+
+</html>
