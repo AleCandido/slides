@@ -1,0 +1,115 @@
+:root {
+  --time: 10s;
+}
+
+.proton,
+.quark {
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.proton {
+  position: relative;
+  --radius: 100px;
+  height: calc(2 * var(--radius));
+  width: calc(2 * var(--radius));
+
+  margin-top: 2em;
+  z-index: -2;
+
+  background-image: radial-gradient(#c5e6a3, #66ab1d);
+  filter: blur(2px);
+}
+
+.small.proton {
+  position: absolute;
+  z-index: -4;
+
+  background-image: radial-gradient(#c0e0fa, #4ba7f2);
+}
+
+.present .proton {
+  animation: proton var(--time) infinite normal cubic-bezier(0, 0, 1, 1);
+}
+
+@keyframes proton {
+  0% {
+    transform: rotate(0deg) translate(0%, 0%) rotate(0deg);
+  }
+  30% {
+    transform: rotate(360deg) translate(-120%, -120%) rotate(360deg);
+  }
+  100% {
+    transform: rotate(720deg) translate(0%, 0%) rotate(720deg);
+  }
+}
+
+.quark {
+  --quark-time: calc(var(--time) * 0.23);
+
+  position: absolute;
+  --radius: 15px;
+  height: calc(2 * var(--radius));
+  width: calc(2 * var(--radius));
+
+  z-index: -1;
+
+  background-color: #9dd4ed;
+  filter: blur(3px);
+}
+
+.small.quark {
+  --radius: 8px;
+  z-index: -3;
+  filter: none;
+}
+
+.present .valence {
+  animation: valence var(--quark-time) infinite alternate;
+}
+
+@keyframes valence {
+  0% {
+  }
+  33% {
+    background-color: #f7ded0;
+    transform: rotate(40deg) translate(40%, -20%) rotate(40deg);
+    filter: blur(7px);
+  }
+  66% {
+    background: #d7eb81;
+    transform: rotate(40deg) translate(-20%, 20%) rotate(40deg);
+    filter: blur(5px);
+  }
+  100% {
+  }
+}
+
+.gluon {
+  position: absolute;
+
+  --radius: 65px;
+  width: calc(2 * var(--radius));
+
+  z-index: -2;
+}
+
+.present .gluon {
+  --gluon-time: calc(var(--time) * 0.23);
+
+  animation: gluon var(--gluon-time) infinite alternate;
+}
+
+@keyframes gluon {
+  0% {
+  }
+  30% {
+    width: calc(2.1 * var(--radius));
+  }
+  60% {
+    width: calc(1.9 * var(--radius));
+    filter: blur(1px);
+  }
+  100% {
+  }
+}

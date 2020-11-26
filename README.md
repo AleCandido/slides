@@ -11,6 +11,7 @@ Here you can find the slides I made and collected during years.
 
 - [introduction](./exphep2-pdf-intro/)
 - [theory](./exphep2-pdf-theory/)
+- [methodology](./exphep2-pdf-methodology/)
 
 ## Master
 
