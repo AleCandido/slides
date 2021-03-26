@@ -7,7 +7,11 @@ Here you can find the slides I made and collected during years.
 - [DISaaS presentation to N3PDF](./disaas-to-n3pdf/)
 - [yadism first internal publication](./yadism-nnpdf-publication/)
 
-## Experimental High Energy Physics II - SNS
+### Exams
+
+- Bayesian Statistics: [Hamiltonian Monte Carlo](./hmc-bayes-phd)
+
+### Experimental High Energy Physics II - SNS
 
 - [introduction](./exphep2-pdf-intro/)
 - [theory](./exphep2-pdf-theory/)
