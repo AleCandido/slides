@@ -9,7 +9,7 @@ Here you can find the slides I made and collected during years.
 
 ### Exams
 
-- Bayesian Statistics: [Hamiltonian Monte Carlo](./hmc-bayes-phd)
+- Bayesian Statistics: [Hamiltonian Monte Carlo](./hmc-bayes-phd/)
 
 ### Experimental High Energy Physics II - SNS
 
@@ -19,4 +19,4 @@ Here you can find the slides I made and collected during years.
 
 ## Master
 
-- [master thesis](./thesis-slides)
+- [master thesis](./master-thesis/)
